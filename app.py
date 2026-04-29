@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load model
 with open('my_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+    scaler, model = pickle.load(file)
 
 st.title("Loan Approval Predictor")
 
@@ -42,7 +42,8 @@ input_data['Monthly_Housing_Payment'] = housing
 
 # Prediction
 if st.button("Predict"):
-    prediction = model.predict(input_data)[0]
+    input_scaled = scaler.transform(input_data)
+prediction = model.predict(input_scaled)[0]
     
     if prediction == 1:
         st.success("Loan Approved")
