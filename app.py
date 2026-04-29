@@ -43,8 +43,8 @@ input_data['Monthly_Housing_Payment'] = housing
 # Prediction
 if st.button("Predict"):
     input_scaled = scaler.transform(input_data)
-prediction = model.predict(input_scaled)[0]
-    
+    prediction = model.predict(input_scaled)[0]
+
     if prediction == 1:
         st.success("Loan Approved")
     else:
